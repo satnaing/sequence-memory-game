@@ -2,6 +2,14 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      xs: "456px",
+      sm: "572px",
+      // sm: "640px",
+      md: "865px",
+      lg: "1080px",
+      xl: "1440px",
+    },
     colors: {
       bgcolor: "#30475E",
       bgcolor2: "#2F3234",

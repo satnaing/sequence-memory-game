@@ -17,10 +17,6 @@ const App = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [level, setLevel] = useState(0);
   const [highscore, setHighscore] = useState(0);
-  const start = () => {
-    let audio = new Audio("/sounds/2.mp3");
-    audio.play();
-  };
   // useEffect(() => {
   //   started === true &&
   //     timeleft > 0 &&
@@ -39,6 +35,7 @@ const App = () => {
       setWrong(false);
     }
   };
+
   const handleSeq = () => {
     let genNum = Math.floor(Math.random() * 4);
     setSeqArray([...seqArray, initArray[genNum]]);
@@ -46,6 +43,7 @@ const App = () => {
     setUserArray([]);
     setCount(0);
   };
+
   const handleUserInput = (e) => {
     if (!started) return;
     if (!wrong) {
@@ -73,19 +71,23 @@ const App = () => {
       }
     }
   };
+
   const updateClassInput = () => {
     let cc = `highlight2`;
     setClassInput(cc);
     setTimeout(() => setClassInput(""), 500);
   };
+
   const updateClass = () => {
     let cc = `${classN} highlight`;
     setClassN(cc);
     setTimeout(() => setClassN(""), 500);
   };
+
   useEffect(() => {
     if (seqArray.length !== 0 && !wrong) {
       updateClass();
+
       // sound effect
       if (!isMuted) {
         let audio = new Audio(`/sounds/${seqArray[seqArray.length - 1]}.mp3`);
@@ -94,37 +96,37 @@ const App = () => {
     }
   }, [seqArray]);
   return (
-    // <Layout />
-    <div className="App">
-      {/* {timeleft === 0 ? `Level: ${level}` : `Game Start in ${timeleft}`} */}
-      High Score: {highscore}
-      <br />
-      Initial Array = {initArray}
-      <br />
-      Sequence Array = {seqArray} <br />
-      User Array = {userArray} <br />
-      <button onClick={handleClick} value={started ? "Stop" : "Start"}>
-        {started ? "Stop" : "Start"}
-      </button>
-      <button onClick={() => setIsMuted(!isMuted)}>
-        {isMuted ? "Unmute" : "Mute"}
-      </button>
-      <br />
-      {initArray.map((color) => {
-        return (
-          <button
-            className={`element ${
-              color === seqArray[seqArray.length - 1] ? classN : ""
-            } ${color === userArray[userArray.length - 1] && classInput}`}
-            key={color}
-            onClick={handleUserInput}
-            value={color}
-          >
-            {color}
-          </button>
-        );
-      })}
-    </div>
+    <Layout />
+    // <div className="App">
+    //   {/* {timeleft === 0 ? `Level: ${level}` : `Game Start in ${timeleft}`} */}
+    //   High Score: {highscore}
+    //   <br />
+    //   Initial Array = {initArray}
+    //   <br />
+    //   Sequence Array = {seqArray} <br />
+    //   User Array = {userArray} <br />
+    //   <button onClick={handleClick} value={started ? "Stop" : "Start"}>
+    //     {started ? "Stop" : "Start"}
+    //   </button>
+    //   <button onClick={() => setIsMuted(!isMuted)}>
+    //     {isMuted ? "Unmute" : "Mute"}
+    //   </button>
+    //   <br />
+    //   {initArray.map((color) => {
+    //     return (
+    //       <button
+    //         className={`element ${
+    //           color === seqArray[seqArray.length - 1] ? classN : ""
+    //         } ${color === userArray[userArray.length - 1] && classInput}`}
+    //         key={color}
+    //         onClick={handleUserInput}
+    //         value={color}
+    //       >
+    //         {color}
+    //       </button>
+    //     );
+    //   })}
+    // </div>
   );
 };
 
