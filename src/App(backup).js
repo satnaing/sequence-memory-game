@@ -10,7 +10,7 @@ const App = () => {
   const [userArray, setUserArray] = useState([]);
   const [wrong, setWrong] = useState(false);
   const [count, setCount] = useState(0);
-  // const [timeleft, setTimeleft] = useState(1);
+  const [timeleft, setTimeleft] = useState(1);
   const [started, setStarted] = useState(false);
   const [classN, setClassN] = useState("");
   const [classInput, setClassInput] = useState("");
@@ -21,17 +21,17 @@ const App = () => {
     let audio = new Audio("/sounds/2.mp3");
     audio.play();
   };
-  // useEffect(() => {
-  //   started === true &&
-  //     timeleft > 0 &&
-  //     setTimeout(() => setTimeleft(timeleft - 1), 1000);
-  // }, [started, timeleft]);
+  useEffect(() => {
+    started === true &&
+      timeleft > 0 &&
+      setTimeout(() => setTimeleft(timeleft - 1), 1000);
+  }, [started, timeleft]);
 
   const handleClick = (e) => {
     if (e.target.value === "Stop") {
       setSeqArray([]);
       setStarted(false);
-      // setTimeleft(3);
+      setTimeleft(3);
       setWrong(false);
     } else {
       setTimeout(() => handleSeq(), 1000);
@@ -96,7 +96,8 @@ const App = () => {
   return (
     // <Layout />
     <div className="App">
-      {/* {timeleft === 0 ? `Level: ${level}` : `Game Start in ${timeleft}`} */}
+      {timeleft === 0 ? `Level: ${level}` : `Game Start in ${timeleft}`}
+      <br />
       High Score: {highscore}
       <br />
       Initial Array = {initArray}
@@ -124,6 +125,7 @@ const App = () => {
           </button>
         );
       })}
+      <button onClick={start}>Play</button>
     </div>
   );
 };
