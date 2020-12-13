@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Button from "./Button";
 import ColorDiv from "./ColorDiv";
 import ContainerRow from "./ContainerRow";
@@ -6,6 +6,7 @@ import RoundedButton from "./RoundedButton";
 import "../App.css";
 import MuteSVG from "./MuteSVG";
 import UnmuteSVG from "./UnmuteSVG";
+import useLocalStorage from "../customHooks/useLocalStorage";
 
 const initArray = ["yellow", "red", "blue", "white"];
 
@@ -20,31 +21,33 @@ const Layout = () => {
   const [classInput, setClassInput] = useState("");
   const [isMuted, setIsMuted] = useState(false);
   const [level, setLevel] = useState(0);
-  const [highscore, setHighscore] = useState(0);
+  // const [highscore, setHighscore] = useState(0);
+  const [highscore, setHighscore] = useLocalStorage(0, "highscore");
 
-  const handleClick = (e) => {
-    console.log(e.target.value);
-    if (e.target.value === "Stop") {
-      setSeqArray([]);
-      setStarted(false);
-      // setTimeleft(3);
-      setWrong(false);
-      setLevel(0);
-    } else {
-      setTimeout(() => handleSeq(), 1000);
-      setStarted(true);
-      setWrong(false);
-      setLevel(0);
-    }
-  };
-
-  const handleSeq = () => {
+  const handleSeq = useCallback(() => {
     let genNum = Math.floor(Math.random() * 4);
     setSeqArray([...seqArray, initArray[genNum]]);
     setLevel(level + 1);
     setUserArray([]);
     setCount(0);
-  };
+  }, [seqArray, level]);
+
+  const handleClick = useCallback(
+    (e) => {
+      if (e.target.value === "Stop") {
+        setSeqArray([]);
+        setStarted(false);
+        setWrong(false);
+        setLevel(0);
+      } else {
+        setTimeout(() => handleSeq(), 1000);
+        setStarted(true);
+        setWrong(false);
+        setLevel(0);
+      }
+    },
+    [handleSeq]
+  );
 
   const handleUserInput = (e) => {
     if (!started) return;
@@ -61,8 +64,8 @@ const Layout = () => {
           audio.play();
         }
       } else {
-        console.log("Wrong!!!");
-        console.log(`Should be ${seqArray[count]}`);
+        // console.log(`Should be ${seqArray[count]}`);
+        trinkleClass();
         setWrong(true);
         level > highscore && setHighscore(level);
         // sound effect onclick
@@ -74,18 +77,30 @@ const Layout = () => {
     }
   };
 
+  const trinkleClass = () => {
+    setTimeout(() => updateClass(), 500);
+    setTimeout(() => updateClass(), 800);
+    setTimeout(() => updateClass(), 1100);
+  };
+
+  const updateClass = useCallback(() => {
+    let cc = `${classN} border-opacity-100 bg-opacity-10`;
+    setClassN(cc);
+    setTimeout(() => setClassN(""), 100);
+  }, [classN]);
+
   useEffect(() => {
     if (seqArray.length !== 0 && !wrong) {
       updateClass();
 
       // sound effect
       if (!isMuted) {
-        console.log(seqArray[seqArray.length - 1]);
         let audio = new Audio(`/sounds/${seqArray[seqArray.length - 1]}.mp3`);
         audio.play();
       }
     }
-  }, [seqArray]);
+    // eslint-disable-next-line
+  }, [seqArray, isMuted, wrong]);
 
   const updateClassInput = () => {
     let cc = `border-opacity-100 bg-opacity-50`;
@@ -93,18 +108,17 @@ const Layout = () => {
     setTimeout(() => setClassInput(""), 100);
   };
 
-  const updateClass = () => {
-    let cc = `${classN} border-opacity-100 bg-opacity-10`;
-    setClassN(cc);
-    setTimeout(() => setClassN(""), 100);
-  };
-
   let headMsg = "";
   if (!started) {
-    headMsg = "Press Any Key to Start";
+    headMsg = (
+      <>
+        <span className="hidden sm:inline">Press Any Key to Start</span>
+        <span className="sm:hidden">Tab the Button to start</span>
+      </>
+    );
   } else {
     if (wrong) {
-      headMsg = `Game Over!!! Your score is ${level}`;
+      headMsg = `Game Over! Your score is ${level}`;
     } else {
       headMsg = `Level : ${level}`;
     }
@@ -120,6 +134,15 @@ const Layout = () => {
   } else {
     btnMsg = "Start";
   }
+
+  // Start the game if any key is pressed
+  useEffect(() => {
+    document.addEventListener("keydown", handleClick, false);
+
+    return () => {
+      document.removeEventListener("keydown", handleClick, false);
+    };
+  }, [handleClick]);
   return (
     <div
       className={`mx-auto flex flex-col h-screen ${
@@ -160,7 +183,7 @@ const Layout = () => {
           {initArray.map((color) => {
             return (
               <ColorDiv
-                cname={`element ${
+                cname={`${
                   color === seqArray[seqArray.length - 1] ? classN : ""
                 } ${
                   color === userArray[userArray.length - 1] && classInput
@@ -184,7 +207,7 @@ const Layout = () => {
       {/* Mute Btn for Mobile */}
       <ContainerRow cname="my-8">
         <Button
-          cname="sm:invisible"
+          cname="sm:invisible mb-8"
           handleClick={() => setIsMuted(!isMuted)}
           val=""
         >
