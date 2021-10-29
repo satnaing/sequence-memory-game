@@ -20,7 +20,7 @@ Simon game built with ReactJS and Tailwind CSS. This is Progressive Web App (PWA
 
 ## Tech Stack
 
-**Frontend** ReactJS
+**Frontend** ReactJS  
 **Styling** Tailwind CSS  
 **Design & Prototype** Figma  
 **Deployment** Github Pages
