@@ -60,7 +60,9 @@ const Layout = () => {
         updateClassInput();
         // sound effect onclick
         if (!isMuted) {
-          let audio = new Audio(`/sounds/${clickedDiv}.mp3`);
+          let audio = new Audio(
+            `${process.env.PUBLIC_URL}/sounds/${clickedDiv}.mp3`
+          );
           audio.play();
         }
       } else {
@@ -70,7 +72,7 @@ const Layout = () => {
         level > highscore && setHighscore(level);
         // sound effect onclick
         if (!isMuted) {
-          let audio = new Audio(`/sounds/error.mp3`);
+          let audio = new Audio(`${process.env.PUBLIC_URL}/sounds/error.mp3`);
           audio.play();
         }
       }
@@ -95,7 +97,11 @@ const Layout = () => {
 
       // sound effect
       if (!isMuted) {
-        let audio = new Audio(`/sounds/${seqArray[seqArray.length - 1]}.mp3`);
+        let audio = new Audio(
+          `${process.env.PUBLIC_URL}/sounds/${
+            seqArray[seqArray.length - 1]
+          }.mp3`
+        );
         audio.play();
       }
     }
@@ -181,13 +187,23 @@ const Layout = () => {
       <ContainerRow>
         <ContainerRow cname="flex-wrap xs:w-4/5 sm:w-3/4 md:w-2/4 lg:w-2/5 xl:w-2/5">
           {initArray.map((color) => {
+            let bgColor = "";
+            if (color === "yellow") {
+              bgColor = "bg-yellow";
+            } else if (color === "red") {
+              bgColor = "bg-red";
+            } else if (color === "blue") {
+              bgColor = "bg-blue";
+            } else if (color === "white") {
+              bgColor = "bg-white";
+            }
             return (
               <ColorDiv
                 cname={`${
                   color === seqArray[seqArray.length - 1] ? classN : ""
                 } ${
                   color === userArray[userArray.length - 1] && classInput
-                } bg-${color}`}
+                } ${bgColor}`}
                 key={color}
                 handleUserInput={handleUserInput}
                 val={color}
