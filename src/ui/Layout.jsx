@@ -158,7 +158,6 @@ const Layout = () => {
       {/* Header */}
       <ContainerRow>
         <h1 className="text-secondary font-gugi text-2xl sm:text-4xl mt-10">
-          {/* {!started ? "Press Any Key to Start" : `Level : ${level}`} */}
           {headMsg}
         </h1>
       </ContainerRow>
@@ -171,12 +170,8 @@ const Layout = () => {
             handleClick={handleClick}
             val={started ? "Stop" : "Start"}
           >
-            {/* {started ? "Stop" : "Start"} */}
             {btnMsg}
           </Button>
-          {/* <button onClick={handleClick} value={started ? "Stop" : "Start"}>
-            {started ? "Stop" : "Start"}
-          </button> */}
           <RoundedButton handleClick={() => setIsMuted(!isMuted)}>
             {isMuted ? <>{MuteSVG}</> : <span>{UnmuteSVG}</span>}
           </RoundedButton>
@@ -200,8 +195,10 @@ const Layout = () => {
             return (
               <ColorDiv
                 cname={`${
-                  color === seqArray[seqArray.length - 1] ? classN : ""
-                } ${
+                  color === seqArray[seqArray.length - 1] && !wrong
+                    ? classN
+                    : ""
+                } ${color === seqArray[count] && wrong ? classN : ""} ${
                   color === userArray[userArray.length - 1] && classInput
                 } ${bgColor}`}
                 key={color}
