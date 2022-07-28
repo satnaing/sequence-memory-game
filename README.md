@@ -18,6 +18,12 @@ Sequence Memory game built with ReactJS and Tailwind CSS. This is Progressive We
 - ❎ Display Incorrect Step
 - 🔥 Installable (Progressive Web Application)
 
+## Lighthouse Score
+
+<p align="center">
+<img width="710" alt="Sat Naing's Sequence Memory Game Lighthouse Score" src="public/lighthouse-result.svg">
+</p>
+
 ## Tech Stack
 
 **Frontend** ReactJS  
