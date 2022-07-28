@@ -15,13 +15,11 @@ const Layout = () => {
   const [userArray, setUserArray] = useState([]);
   const [wrong, setWrong] = useState(false);
   const [count, setCount] = useState(0);
-  // const [timeleft, setTimeleft] = useState(1);
   const [started, setStarted] = useState(false);
   const [classN, setClassN] = useState("");
   const [classInput, setClassInput] = useState("");
   const [isMuted, setIsMuted] = useState(false);
   const [level, setLevel] = useState(0);
-  // const [highscore, setHighscore] = useState(0);
   const [highscore, setHighscore] = useLocalStorage(0, "highscore");
   const [restarted, setRestarted] = useState(false);
 
@@ -48,7 +46,6 @@ const Layout = () => {
   // handle button click (Start, Stop, Restart)
   const handleClick = useCallback(() => {
     setSeqArray([]);
-        setStarted(false);
     setWrong(false);
     setLevel(0);
 
@@ -74,32 +71,35 @@ const Layout = () => {
     }
   }, [restarted, handleSeq]);
 
+  // handle user input sequence
   const handleUserInput = (e) => {
-    if (!started) return;
-    if (!wrong) {
-      const clickedDiv = e.target.attributes.value.value;
-      if (seqArray[count] === clickedDiv) {
-        setUserArray([...userArray, clickedDiv]);
-        setCount(count + 1);
-        count + 1 >= seqArray.length && setTimeout(() => handleSeq(), 1000);
-        updateClassInput();
-        // sound effect onclick
-        if (!isMuted) {
-          let audio = new Audio(
-            `${process.env.PUBLIC_URL}/sounds/${clickedDiv}.mp3`
-          );
-          audio.play();
-        }
-      } else {
-        // console.log(`Should be ${seqArray[count]}`);
-        trinkleClass();
-        setWrong(true);
-        level > highscore && setHighscore(level);
-        // sound effect onclick
-        if (!isMuted) {
-          let audio = new Audio(`${process.env.PUBLIC_URL}/sounds/error.mp3`);
-          audio.play();
-        }
+    if (!started || wrong) return; // no action if game is not started or wrong
+    const clickedDiv = e.target.attributes.value.value; // current user clicked div
+
+    // if user's clicked sequence is correct
+    if (seqArray[count] === clickedDiv) {
+      setUserArray([...userArray, clickedDiv]);
+      setCount(count + 1);
+      count + 1 >= seqArray.length && setTimeout(() => handleSeq(), 1000);
+      updateClassInput();
+      // sound effect onclick
+      if (!isMuted) {
+        let audio = new Audio(
+          `${process.env.PUBLIC_URL}/sounds/${clickedDiv}.mp3`
+        );
+        audio.play();
+      }
+    }
+    // if user's clicked sequence is incorrect
+    else {
+      // console.log(`Should be ${seqArray[count]}`);
+      trinkleClass();
+      setWrong(true);
+      level > highscore && setHighscore(level);
+      // sound effect onclick
+      if (!isMuted) {
+        let audio = new Audio(`${process.env.PUBLIC_URL}/sounds/error.mp3`);
+        audio.play();
       }
     }
   };
@@ -110,12 +110,14 @@ const Layout = () => {
     setTimeout(() => updateClass(), 1100);
   };
 
+  // display blink effect for div
   const updateClass = useCallback(() => {
     let cc = `${classN} border-opacity-100 bg-opacity-10`;
     setClassN(cc);
     setTimeout(() => setClassN(""), 100);
   }, [classN]);
 
+  // update sound and visual effect for seq div
   useEffect(() => {
     if (seqArray.length !== 0 && !wrong) {
       updateClass();
