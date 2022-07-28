@@ -30,7 +30,7 @@ const Layout = () => {
     setLevel((prevLvl) => prevLvl + 1);
     setUserArray([]);
     setCount(0);
-  }, [seqArray, level]);
+  }, [seqArray]);
 
   const handleClick = useCallback(
     (e) => {
