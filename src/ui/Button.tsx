@@ -1,6 +1,17 @@
-const Button = ({ children, cname, handleClick, val, title }) => {
+import React from "react";
+
+type Props = {
+  children: string | React.ReactElement;
+  cname: string;
+  handleClick: () => void;
+  val?: string;
+  title?: string;
+};
+
+const Button = ({ children, cname, handleClick, val, title }: Props) => {
   return (
     <button
+      type="button"
       onClick={handleClick}
       value={val}
       title={title}

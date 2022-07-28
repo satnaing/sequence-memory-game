@@ -1,6 +1,6 @@
 import React from "react";
 
-const useLocalStorage = (defaultValue, key) => {
+const useLocalStorage = (defaultValue: number, key: string) => {
   const [value, setValue] = React.useState(() => {
     const highScore = window.localStorage.getItem(key);
 

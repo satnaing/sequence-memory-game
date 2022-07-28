@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, ReactElement } from "react";
 import Button from "./Button";
 import ColorDiv from "./ColorDiv";
 import ContainerRow from "./ContainerRow";
@@ -7,12 +7,13 @@ import "../App.css";
 import MuteSVG from "./MuteSVG";
 import UnmuteSVG from "./UnmuteSVG";
 import useLocalStorage from "../customHooks/useLocalStorage";
+import React from "react";
 
 const initArray = ["yellow", "red", "blue", "white"];
 
 const Layout = () => {
-  const [seqArray, setSeqArray] = useState([]);
-  const [userArray, setUserArray] = useState([]);
+  const [seqArray, setSeqArray] = useState<string[]>([]);
+  const [userArray, setUserArray] = useState<string[]>([]);
   const [wrong, setWrong] = useState(false);
   const [count, setCount] = useState(0);
   const [started, setStarted] = useState(false);
@@ -72,9 +73,9 @@ const Layout = () => {
   }, [restarted, handleSeq]);
 
   // handle user input sequence
-  const handleUserInput = (e) => {
+  const handleUserInput = (e: any) => {
     if (!started || wrong) return; // no action if game is not started or wrong
-    const clickedDiv = e.target.attributes.value.value; // current user clicked div
+    const clickedDiv: string = e.target.attributes.value.value; // current user clicked div
 
     // if user's clicked sequence is correct
     if (seqArray[count] === clickedDiv) {
@@ -141,7 +142,7 @@ const Layout = () => {
     setTimeout(() => setClassInput(""), 100);
   };
 
-  let headMsg = "";
+  let headMsg: string | ReactElement = "";
   if (!started) {
     headMsg = (
       <>
@@ -225,7 +226,7 @@ const Layout = () => {
                 } ${bgColor}`}
                 key={color}
                 handleUserInput={handleUserInput}
-                val={color}
+                title={color}
               />
             );
           })}
