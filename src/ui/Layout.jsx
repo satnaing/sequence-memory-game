@@ -23,7 +23,20 @@ const Layout = () => {
   const [level, setLevel] = useState(0);
   // const [highscore, setHighscore] = useState(0);
   const [highscore, setHighscore] = useLocalStorage(0, "highscore");
+  const [restarted, setRestarted] = useState(false);
 
+  let btnMsg = "";
+  if (started) {
+    if (wrong) {
+      btnMsg = "Restart";
+    } else {
+      btnMsg = "Stop";
+    }
+  } else {
+    btnMsg = "Start";
+  }
+
+  // generate next sequence and store sequence in array
   const handleSeq = useCallback(() => {
     let genNum = Math.floor(Math.random() * 4);
     setSeqArray([...seqArray, initArray[genNum]]);
@@ -32,22 +45,34 @@ const Layout = () => {
     setCount(0);
   }, [seqArray]);
 
-  const handleClick = useCallback(
-    (e) => {
-      if (e.target.value === "Stop") {
-        setSeqArray([]);
+  // handle button click (Start, Stop, Restart)
+  const handleClick = useCallback(() => {
+    setSeqArray([]);
         setStarted(false);
-        setWrong(false);
-        setLevel(0);
-      } else {
-        setTimeout(() => handleSeq(), 1000);
-        setStarted(true);
-        setWrong(false);
-        setLevel(0);
-      }
-    },
-    [handleSeq]
-  );
+    setWrong(false);
+    setLevel(0);
+
+    if (btnMsg === "Stop") {
+      setStarted(false);
+    } else if (btnMsg === "Start") {
+      setTimeout(() => handleSeq(), 1000);
+      setStarted(true);
+    } else {
+      setStarted(false);
+      setRestarted(true);
+    }
+  }, [handleSeq, btnMsg]);
+
+  // restart the whole sequence if restart button is clicked (restarted => true)
+  useEffect(() => {
+    if (restarted) {
+      setTimeout(() => handleSeq(), 1000);
+      setStarted(true);
+      setWrong(false);
+      setLevel(0);
+      setRestarted(false);
+    }
+  }, [restarted, handleSeq]);
 
   const handleUserInput = (e) => {
     if (!started) return;
@@ -128,17 +153,6 @@ const Layout = () => {
     } else {
       headMsg = `Level : ${level}`;
     }
-  }
-
-  let btnMsg = "";
-  if (started) {
-    if (wrong) {
-      btnMsg = "Restart";
-    } else {
-      btnMsg = "Stop";
-    }
-  } else {
-    btnMsg = "Start";
   }
 
   // Start the game if any key is pressed
