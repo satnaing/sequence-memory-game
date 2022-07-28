@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/sequence-memory-game/static/css/main.4f31d443.css",
-    "main.js": "/sequence-memory-game/static/js/main.e31f9add.js",
+    "main.js": "/sequence-memory-game/static/js/main.2ab7fa21.js",
     "static/js/377.5cd27dff.chunk.js": "/sequence-memory-game/static/js/377.5cd27dff.chunk.js",
     "service-worker.js": "/sequence-memory-game/service-worker.js",
     "index.html": "/sequence-memory-game/index.html",
     "main.4f31d443.css.map": "/sequence-memory-game/static/css/main.4f31d443.css.map",
-    "main.e31f9add.js.map": "/sequence-memory-game/static/js/main.e31f9add.js.map",
+    "main.2ab7fa21.js.map": "/sequence-memory-game/static/js/main.2ab7fa21.js.map",
     "377.5cd27dff.chunk.js.map": "/sequence-memory-game/static/js/377.5cd27dff.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4f31d443.css",
-    "static/js/main.e31f9add.js"
+    "static/js/main.2ab7fa21.js"
   ]
 }
