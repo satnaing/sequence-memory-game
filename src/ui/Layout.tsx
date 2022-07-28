@@ -73,9 +73,12 @@ const Layout = () => {
   }, [restarted, handleSeq]);
 
   // handle user input sequence
-  const handleUserInput = (e: any) => {
+  const handleUserInput = (e: {
+    target: { attributes: { title: { value: string } } };
+  }) => {
+    console.log(e.target.attributes);
     if (!started || wrong) return; // no action if game is not started or wrong
-    const clickedDiv: string = e.target.attributes.value.value; // current user clicked div
+    const clickedDiv: string = e.target.attributes.title.value; // current user clicked div
 
     // if user's clicked sequence is correct
     if (seqArray[count] === clickedDiv) {
