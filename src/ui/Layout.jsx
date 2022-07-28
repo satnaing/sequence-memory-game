@@ -171,11 +171,14 @@ const Layout = () => {
         wrong ? "bg-bgcolor2" : "bg-bgcolor"
       }`}
     >
+      <h1 aria-label="Sequence Memory Game" className="sr-only">
+        Sequence Memory Game
+      </h1>
       {/* Header */}
       <ContainerRow>
-        <h1 className="text-secondary font-gugi text-2xl sm:text-4xl mt-10">
+        <h2 className="text-secondary font-gugi text-2xl sm:text-4xl mt-10">
           {headMsg}
-        </h1>
+        </h2>
       </ContainerRow>
 
       {/* Button */}
