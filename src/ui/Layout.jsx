@@ -27,7 +27,7 @@ const Layout = () => {
   const handleSeq = useCallback(() => {
     let genNum = Math.floor(Math.random() * 4);
     setSeqArray([...seqArray, initArray[genNum]]);
-    setLevel(level + 1);
+    setLevel((prevLvl) => prevLvl + 1);
     setUserArray([]);
     setCount(0);
   }, [seqArray, level]);
