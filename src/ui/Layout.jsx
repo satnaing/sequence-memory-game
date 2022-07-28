@@ -188,7 +188,10 @@ const Layout = () => {
           >
             {btnMsg}
           </Button>
-          <RoundedButton handleClick={() => setIsMuted(!isMuted)}>
+          <RoundedButton
+            handleClick={() => setIsMuted(!isMuted)}
+            title={isMuted ? "Mute Button" : "Unmute Button"}
+          >
             {isMuted ? <>{MuteSVG}</> : <span>{UnmuteSVG}</span>}
           </RoundedButton>
         </ContainerRow>
@@ -238,10 +241,9 @@ const Layout = () => {
         <Button
           cname="sm:invisible mb-8"
           handleClick={() => setIsMuted(!isMuted)}
-          val=""
+          title={isMuted ? "Mute Button" : "Unmute Button"}
         >
           {isMuted ? <>Unmute {UnmuteSVG}</> : <>Mute {MuteSVG}</>}
-          {/* Mute{" "} */}
         </Button>
       </ContainerRow>
     </div>
