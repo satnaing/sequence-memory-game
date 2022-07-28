@@ -1,25 +1,16 @@
 {
   "files": {
-    "main.css": "/sequence-memory-game/static/css/main.cebd0237.chunk.css",
-    "main.js": "/sequence-memory-game/static/js/main.d2b0efdb.chunk.js",
-    "main.js.map": "/sequence-memory-game/static/js/main.d2b0efdb.chunk.js.map",
-    "runtime-main.js": "/sequence-memory-game/static/js/runtime-main.f395b4f4.js",
-    "runtime-main.js.map": "/sequence-memory-game/static/js/runtime-main.f395b4f4.js.map",
-    "static/js/2.a6a3d25c.chunk.js": "/sequence-memory-game/static/js/2.a6a3d25c.chunk.js",
-    "static/js/2.a6a3d25c.chunk.js.map": "/sequence-memory-game/static/js/2.a6a3d25c.chunk.js.map",
-    "static/js/3.d5b6fbb8.chunk.js": "/sequence-memory-game/static/js/3.d5b6fbb8.chunk.js",
-    "static/js/3.d5b6fbb8.chunk.js.map": "/sequence-memory-game/static/js/3.d5b6fbb8.chunk.js.map",
-    "index.html": "/sequence-memory-game/index.html",
+    "main.css": "/sequence-memory-game/static/css/main.294ea42e.css",
+    "main.js": "/sequence-memory-game/static/js/main.8955c2a8.js",
+    "static/js/377.5cd27dff.chunk.js": "/sequence-memory-game/static/js/377.5cd27dff.chunk.js",
     "service-worker.js": "/sequence-memory-game/service-worker.js",
-    "service-worker.js.LICENSE.txt": "/sequence-memory-game/service-worker.js.LICENSE.txt",
-    "service-worker.js.map": "/sequence-memory-game/service-worker.js.map",
-    "static/css/main.cebd0237.chunk.css.map": "/sequence-memory-game/static/css/main.cebd0237.chunk.css.map",
-    "static/js/2.a6a3d25c.chunk.js.LICENSE.txt": "/sequence-memory-game/static/js/2.a6a3d25c.chunk.js.LICENSE.txt"
+    "index.html": "/sequence-memory-game/index.html",
+    "main.294ea42e.css.map": "/sequence-memory-game/static/css/main.294ea42e.css.map",
+    "main.8955c2a8.js.map": "/sequence-memory-game/static/js/main.8955c2a8.js.map",
+    "377.5cd27dff.chunk.js.map": "/sequence-memory-game/static/js/377.5cd27dff.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.f395b4f4.js",
-    "static/js/2.a6a3d25c.chunk.js",
-    "static/css/main.cebd0237.chunk.css",
-    "static/js/main.d2b0efdb.chunk.js"
+    "static/css/main.294ea42e.css",
+    "static/js/main.8955c2a8.js"
   ]
 }
