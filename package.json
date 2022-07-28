@@ -1,6 +1,6 @@
 {
-  "name": "simon2",
-  "version": "0.1.0",
+  "name": "sequence_memory_game",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.0.0",
@@ -15,7 +15,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
     "web-vitals": "^0.2.4"
   },
-  "homepage": "http://satnaing.github.io/simon",
+  "homepage": "https://github.com/satnaing/sequence-memory-game",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
