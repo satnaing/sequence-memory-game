@@ -15,7 +15,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
     "web-vitals": "^0.2.4"
   },
-  "homepage": "https://github.com/satnaing/sequence-memory-game",
+  "homepage": "http://satnaing.github.io/sequence-memory-game",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
