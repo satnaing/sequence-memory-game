@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/sequence-memory-game/static/css/main.716202f0.css",
-    "main.js": "/sequence-memory-game/static/js/main.30d4a976.js",
+    "main.css": "/sequence-memory-game/static/css/main.50105617.css",
+    "main.js": "/sequence-memory-game/static/js/main.797b1d4a.js",
     "static/js/377.5cd27dff.chunk.js": "/sequence-memory-game/static/js/377.5cd27dff.chunk.js",
     "service-worker.js": "/sequence-memory-game/service-worker.js",
     "index.html": "/sequence-memory-game/index.html",
-    "main.716202f0.css.map": "/sequence-memory-game/static/css/main.716202f0.css.map",
-    "main.30d4a976.js.map": "/sequence-memory-game/static/js/main.30d4a976.js.map",
+    "main.50105617.css.map": "/sequence-memory-game/static/css/main.50105617.css.map",
+    "main.797b1d4a.js.map": "/sequence-memory-game/static/js/main.797b1d4a.js.map",
     "377.5cd27dff.chunk.js.map": "/sequence-memory-game/static/js/377.5cd27dff.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.716202f0.css",
-    "static/js/main.30d4a976.js"
+    "static/css/main.50105617.css",
+    "static/js/main.797b1d4a.js"
   ]
 }
